@@ -105,7 +105,7 @@ class Processor
             }
 
         } catch (\Exception $e) {
-            $this->executionContext->addError($e);
+            $this->executionContext->handleError($e);
         }
 
         return $this;
@@ -204,7 +204,7 @@ class Processor
                     throw new ResolveException(sprintf('Resolving type with kind "%s" not supported', $kind));
             }
         } catch (\Exception $e) {
-            $this->executionContext->addError($e);
+            $this->executionContext->handleError($e);
 
             if ($fromObject) {
                 throw $e;
