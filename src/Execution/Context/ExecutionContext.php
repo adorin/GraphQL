@@ -15,7 +15,7 @@ use Youshido\GraphQL\Introspection\Field\SchemaField;
 use Youshido\GraphQL\Introspection\Field\TypeDefinitionField;
 use Youshido\GraphQL\Schema\AbstractSchema;
 use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
-use Youshido\GraphQL\Validator\ErrorHandler\ErrorHandlerInterface;
+use Youshido\GraphQL\ErrorHandler\ErrorHandlerInterface;
 use Youshido\GraphQL\Validator\SchemaValidator\SchemaValidator;
 
 class ExecutionContext implements ExecutionContextInterface
@@ -139,9 +139,10 @@ class ExecutionContext implements ExecutionContextInterface
     {
         foreach ($this->errorHandlers as $handler) {
             if (!$handler->handle($e, $this)) {
-                break;
+                return $this;
             }
         }
+        $this->addError($e);
 
         return $this;
     }

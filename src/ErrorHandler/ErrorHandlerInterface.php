@@ -6,7 +6,7 @@
  * created: 7/4/17 11:36 PM
  */
 
-namespace Youshido\GraphQL\Validator\ErrorHandler;
+namespace Youshido\GraphQL\ErrorHandler;
 
 use Youshido\GraphQL\Execution\Context\ExecutionContextInterface;
 
